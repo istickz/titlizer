@@ -12,5 +12,4 @@ gem "rubocop-rspec"
 
 gem "async-http"
 gem "nokogiri"
-gem "optparse"
-gem "terminal-table"
+gem "tty-table"

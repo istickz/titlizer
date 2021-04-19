@@ -2,22 +2,9 @@
 
 require "./lib/titlizer"
 
-require "optparse"
-require "csv"
-
-# options = {}
-# OptionParser.new do |opts|
-#   opts.banner = "Usage: example.rb [options]"
-#
-#   opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
-#     options[:verbose] = v
-#   end
-# end.parse!
-
 sites_parser = Titilizer::Parser.new(sites: ARGV, max_concurrent_requests: 64)
 sites_parser.parse!
 results = sites_parser.results
 
-csv = Titlizer::Seiralizers::PasrserResult::CsvSerializer.new(results).serialize
-terminal_table = Titlizer::Seiralizers::PasrserResult::TerminalTableSerializer.new(CSV.new(csv).to_a).serialize
-puts terminal_table
+terminal_table = Titlizer::Seiralizers::PasrserResult::TerminalTableSerializer.new(results).serialize
+puts terminal_table.render(:ascii, padding: [0, 1, 0, 1])

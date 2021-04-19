@@ -5,7 +5,7 @@ module Titlizer
     module PasrserResult
       class CsvSerializer < Base
         def serialize
-          return [] unless data.any?
+          return "" unless data.any?
 
           column_names = data.first&.keys
 

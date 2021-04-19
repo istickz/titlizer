@@ -1,17 +1,15 @@
-require "terminal-table"
+require "tty-table"
 
 module Titlizer
   module Seiralizers
     module PasrserResult
       class TerminalTableSerializer < Base
         def serialize
-          items = data || []
+          return TTY::Table.new([], [[]]) unless data.any?
 
-          Terminal::Table.new do |v|
-            v.title = "Results"
-            v.headings = items[0]
-            v.rows = items[1..]
-          end
+          headers = data.first&.keys
+          rows = data.map { |i| i.values_at(*headers) }
+          TTY::Table.new(headers, rows)
         end
       end
     end

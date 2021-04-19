@@ -24,10 +24,11 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.3-x86_64-darwin)
       racc (~> 1.4)
-    optparse (0.1.0)
     parallel (1.20.1)
     parser (3.0.1.0)
       ast (~> 2.4.1)
+    pastel (0.8.0)
+      tty-color (~> 0.5)
     protocol-hpack (1.4.2)
     protocol-http (0.21.0)
     protocol-http1 (0.13.2)
@@ -70,9 +71,20 @@ GEM
       rubocop (~> 1.0)
       rubocop-ast (>= 1.1.0)
     ruby-progressbar (1.11.0)
-    terminal-table (1.6.0)
+    strings (0.2.1)
+      strings-ansi (~> 0.2)
+      unicode-display_width (>= 1.5, < 3.0)
+      unicode_utils (~> 1.4)
+    strings-ansi (0.2.0)
     timers (4.3.3)
+    tty-color (0.6.0)
+    tty-screen (0.8.1)
+    tty-table (0.12.0)
+      pastel (~> 0.8)
+      strings (~> 0.2.0)
+      tty-screen (~> 0.8)
     unicode-display_width (2.0.0)
+    unicode_utils (1.4.0)
 
 PLATFORMS
   x86_64-darwin-20
@@ -80,13 +92,12 @@ PLATFORMS
 DEPENDENCIES
   async-http
   nokogiri
-  optparse
   rake (~> 13.0)
   rspec (~> 3.0)
   rubocop (~> 1.7)
   rubocop-rake
   rubocop-rspec
-  terminal-table
+  tty-table
 
 BUNDLED WITH
    2.2.16
