@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require "./lib/titlizer"
+
+require "optparse"
+require "csv"
+require "terminal-table"
+
+# options = {}
+# OptionParser.new do |opts|
+#   opts.banner = "Usage: example.rb [options]"
+#
+#   opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+#     options[:verbose] = v
+#   end
+# end.parse!
+
+sites = ARGV
+
+sites_parser = Titilizer::Parser.new(sites: sites, max_concurrent_requests: 64)
+sites_parser.parse!
+csv = CSV.new(sites_parser.csv_results)
+csv_array = csv.to_a
+user_table = Terminal::Table.new do |v|
+  v.title = "Results"
+  v.headings = csv_array[0]
+  v.rows = csv_array[1..]
+end
+puts user_table
