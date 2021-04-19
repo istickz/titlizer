@@ -11,7 +11,7 @@ module Titlizer
         return "Empty" if @body.nil? || @body.empty?
 
         parsed_data = Nokogiri::HTML.parse(@body)
-        parsed_data.title
+        parsed_data.title.strip
       rescue StandardError
         "N/A"
       end

@@ -17,7 +17,6 @@ GEM
       async (~> 1.14)
     async-pool (0.3.5)
       async (~> 1.25)
-    byebug (11.1.3)
     console (1.11.1)
       fiber-local
     diff-lcs (1.4.4)
@@ -80,7 +79,6 @@ PLATFORMS
 
 DEPENDENCIES
   async-http
-  byebug
   nokogiri
   optparse
   rake (~> 13.0)

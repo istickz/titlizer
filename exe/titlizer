@@ -4,7 +4,6 @@ require "./lib/titlizer"
 
 require "optparse"
 require "csv"
-require "terminal-table"
 
 # options = {}
 # OptionParser.new do |opts|
@@ -15,15 +14,10 @@ require "terminal-table"
 #   end
 # end.parse!
 
-sites = ARGV
-
-sites_parser = Titilizer::Parser.new(sites: sites, max_concurrent_requests: 64)
+sites_parser = Titilizer::Parser.new(sites: ARGV, max_concurrent_requests: 64)
 sites_parser.parse!
-csv = CSV.new(sites_parser.csv_results)
-csv_array = csv.to_a
-user_table = Terminal::Table.new do |v|
-  v.title = "Results"
-  v.headings = csv_array[0]
-  v.rows = csv_array[1..]
-end
-puts user_table
+results = sites_parser.results
+
+csv = Titlizer::Seiralizers::PasrserResult::CsvSerializer.new(results).serialize
+terminal_table = Titlizer::Seiralizers::PasrserResult::TerminalTableSerializer.new(CSV.new(csv).to_a).serialize
+puts terminal_table
